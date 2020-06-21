@@ -1,0 +1,11 @@
+.item,
+.MyDragHandleClassName {
+    border: 1px solid;
+}
+
+.MyDragHandleClassName {
+    cursor: move;
+    height: 40px;
+    line-height: 38px;
+    background: #61dafb;
+}
