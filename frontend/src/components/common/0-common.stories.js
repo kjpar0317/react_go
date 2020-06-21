@@ -1,6 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
-import { Welcome } from '@storybook/react/demo';
+// import { Welcome } from '@storybook/react/demo';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -9,31 +12,13 @@ import ErrorView from './ErrorView';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default {
-    title: '공통 컴포넌트',
-    component: Welcome,
-};
-
-export const HeaderStory = () => <Header />;
-
-HeaderStory.story = {
-    name: '공통헤더',
-};
-
-export const SidebarStory = () => <Sidebar />;
-
-SidebarStory.story = {
-    name: '공통 사이드바',
-};
-
-export const LoaderStory = () => <Loader />;
-
-LoaderStory.story = {
-    name: '공통 로딩',
-};
-
-export const ErrorViewStory = () => <ErrorView />;
-
-ErrorViewStory.story = {
-    name: '공통 에러',
-};
+storiesOf('공통 컴포넌트', module)
+    .addDecorator((story) => (
+        <Router>
+            <Route path="/" component={() => story()} />
+        </Router>
+    ))
+    .add('공통 헤더', () => <Header />)
+    .add('공통 사이드바', () => <Sidebar />)
+    .add('공통 로딩', () => <Loader />)
+    .add('공통 에러', () => <ErrorView />);
