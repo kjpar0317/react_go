@@ -15,4 +15,4 @@ storiesOf('위젯 컴포넌트', module)
             <Route path="/" component={() => story()} />
         </Router>
     ))
-    .add('공통 헤더', () => <TestWidget {...props} />);
+    .add('공통 헤더', () => <TestWidget item={layout} />);
