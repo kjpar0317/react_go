@@ -21,7 +21,7 @@ func login(c echo.Context) error {
 	password := c.FormValue("password")
 
 	// Throws unauthorized error
-	if username != "jon" || password != "shhh!" {
+	if username != "test" || password != "1234!" {
 		return echo.ErrUnauthorized
 	}
 
