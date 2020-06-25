@@ -14,27 +14,30 @@ func DoLogin(c echo.Context) (err error) {
 	userid := c.FormValue("userid")
 	password := c.FormValue("password")
 
-	// Throws unauthorized error
+
 	if userid != "test" || password != "1234" {
 		return echo.ErrUnauthorized
 	}
 
 	userinfos := services.New()
 
-	var name string
-	var admin bool
+	var loginUserinfo *models.IUserinfo
 
 	for _, userinfo := range userinfos {
-		if userinfo.Userid == userid {
-			name = userinfo.Username
-			admin = userinfo.Admin
+		if userinfo.Userid == userid || userinfo.Password == password {
+			loginUserinfo = &userinfo
 		}
+	}
+
+	// Throws unauthorized error
+	if loginUserinfo == nil {
+		return echo.ErrUnauthorized
 	}
 
 	// Set custom claims
 	claims := models.IJwtCustomClaims{
-		name,
-		admin,
+		loginUserinfo.Userid,
+		loginUserinfo.Admin,
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Hour * 72).Unix(),
 		},
@@ -51,5 +54,6 @@ func DoLogin(c echo.Context) (err error) {
 
 	return c.JSON(http.StatusOK, echo.Map{
 		"token": t,
+		"userinfo": loginUserinfo,
 	})
 }
