@@ -14,11 +14,6 @@ func DoLogin(c echo.Context) (err error) {
 	userid := c.FormValue("userid")
 	password := c.FormValue("password")
 
-
-	if userid != "test" || password != "1234" {
-		return echo.ErrUnauthorized
-	}
-
 	userinfos := services.New()
 
 	var loginUserinfo *models.IUserinfo
