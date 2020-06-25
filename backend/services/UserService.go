@@ -4,10 +4,6 @@ import (
 	"../models"
 )
 
-var (
-	global = New()
-)
-
 func initUsers() [2]models.IUserinfo {
 	var userinfos [2]models.IUserinfo
 
