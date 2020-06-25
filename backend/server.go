@@ -30,6 +30,14 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}))
 
+	/*
+	  로그 포맷 참고
+	 https://echo.labstack.com/middleware/logger
+	*/
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "${time_rfc3339} ${method} - ${uri} ${status}\n",
+	}))
+
 	// Login route
 	e.POST("/login", controllers.DoLogin)
 	// Unauthenticated route
@@ -47,14 +55,6 @@ func main() {
 	r.Use(middleware.JWTWithConfig(config))
 
 	r.POST("/test", controllers.Restricted)
-
-	/*
-	  로그 포맷 참고
-	 https://echo.labstack.com/middleware/logger
-	*/
-	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		Format: "${time_rfc3339} ${method} - ${uri} ${status}\n",
-	}))
 
 	e.Logger.Fatal(e.Start(":7080"))
 }
