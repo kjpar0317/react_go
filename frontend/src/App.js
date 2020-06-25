@@ -11,9 +11,13 @@ import DashBoard from './features/DashBoard';
 import ImageGrid from './features/ImageGrid';
 
 export const App = () => {
-    const [isLoggined, setIsLoggined] = useState(false);
+    const [token, setToken] = useState('');
 
-    if (isLoggined) {
+    const checkToken = (token) => {
+        setToken(token);
+    };
+
+    if (token || (!token && sessionStorage.getItem('token'))) {
         return (
             <Container fluid>
                 <Row>
@@ -46,10 +50,7 @@ export const App = () => {
     } else {
         return (
             <div>
-                <Login
-                    loginState={isLoggined}
-                    changeLoginState={setIsLoggined}
-                />
+                <Login checkToken={checkToken} />
             </div>
         );
     }
