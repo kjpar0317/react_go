@@ -10,16 +10,24 @@ import (
 	"../services"
 )
 
+type Login struct {
+	Userid  string `json:"userid" form:"userid" query:"userid"`
+	Password string `json:"password" form:"password" query:"password"`
+}
+
 func DoLogin(c echo.Context) (err error) {
-	userid := c.FormValue("userid")
-	password := c.FormValue("password")
+	linfo := new(Login)
+
+	if err = c.Bind(linfo); err != nil {
+		return echo.ErrUnauthorized
+	}
 
 	userinfos := services.New()
 
 	var loginUserinfo *models.IUserinfo
 
 	for _, userinfo := range userinfos {
-		if userinfo.Userid == userid || userinfo.Password == password {
+		if userinfo.Userid == linfo.Userid || userinfo.Password == linfo.Password {
 			loginUserinfo = &userinfo
 		}
 	}
