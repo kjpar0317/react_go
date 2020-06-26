@@ -13,16 +13,10 @@ import ImageGrid from './features/ImageGrid';
 import { loginSelector } from './features/Login/slice';
 
 export const App = () => {
-    const [ loginCheck, setLoginCheck ] = useState(false);
     const { userid, username, token } = useSelector(loginSelector.all);
 
-    const doProcess = () => {
-        setLoginCheck(true);
-        console.log(loginCheck);
-    };
-
     if (token || sessionStorage.getItem('token')) {
-        if(!sessionStorage.getItem('token')) {
+        if (!sessionStorage.getItem('token')) {
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('userid', userid);
             sessionStorage.setItem('username', username);
@@ -60,7 +54,7 @@ export const App = () => {
     } else {
         return (
             <div>
-                <Login loginFinish={doProcess} />
+                <Login />
             </div>
         );
     }

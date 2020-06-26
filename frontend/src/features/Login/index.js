@@ -4,12 +4,12 @@ import { Card, Form, Button } from 'react-bootstrap';
 
 import { loginAction } from './slice';
 
-const Login = ({ loginFinish }) => {
+const Login = () => {
     const dispatch = useDispatch();
 
-    const [ validated, setValidated ] = useState(false);
-    const [ userid, setUserid ] = useState('');
-    const [ password, setPassword ] = useState('');
+    const [validated, setValidated] = useState(false);
+    const [userid, setUserid] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,9 +22,7 @@ const Login = ({ loginFinish }) => {
 
         setValidated(true);
 
-        await dispatch(loginAction.dologin({userid, password}));
-
-        loginFinish(true);
+        await dispatch(loginAction.dologin({ userid, password }));
     };
 
     return (

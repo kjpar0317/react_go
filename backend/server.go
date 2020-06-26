@@ -14,7 +14,7 @@ func main() {
 
 	e.HideBanner = true
 
-	fmt.Println(">> 백앤드 서버 (휘발성)")
+	fmt.Println(">> 백앤드 서버 v0.1 (휘발성)")
 	fmt.Println("만든 이유 : 백앤드를 전혀 모르는 프론트앤드 개발자 개인 연습용")
 	fmt.Println("주의점 : DB가 없기 때문에 휘발성임(서버 재기동 시 데이터 초기화)")
 	fmt.Println("라이센스 : 공개용라이선스 (개인 무료)")
