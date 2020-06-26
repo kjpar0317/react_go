@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
 
@@ -13,9 +13,15 @@ import ImageGrid from './features/ImageGrid';
 import { loginSelector } from './features/Login/slice';
 
 export const App = () => {
+    const [ loginCheck, setLoginCheck ] = useState(false);
     const { userid, username, token } = useSelector(loginSelector.all);
 
-    if (token || sessionStorage.getItem('token')) {
+    const doProcess = () => {
+        setLoginCheck(true);
+        console.log(loginCheck);
+    };
+
+    if (loginCheck || sessionStorage.getItem('token')) {
         if(!sessionStorage.getItem('token')) {
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('userid', userid);
@@ -54,7 +60,7 @@ export const App = () => {
     } else {
         return (
             <div>
-                <Login />
+                <Login loginFinish={doProcess} />
             </div>
         );
     }
