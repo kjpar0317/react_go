@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Card, Form, Button } from 'react-bootstrap';
 
-import { doLogin } from '../../api/login';
+import { loginAction } from './slice';
 
-const Login = ({ checkToken }) => {
+const Login = () => {
+    const dispatch = useDispatch();
+
     const [validated, setValidated] = useState(false);
-    const [userid, setUserid] = useState('');
-    const [password, setPassword] = useState('');
+    const [ userid, setUserid ] = useState('');
+    const [ password, setPassword ] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         const form = e.currentTarget;
 
         if (form.checkValidity() === false) {
@@ -16,20 +19,9 @@ const Login = ({ checkToken }) => {
             e.stopPropagation();
         }
 
-        e.preventDefault();
-
         setValidated(true);
 
-        doLogin(userid, password)
-            .then((res) => {
-                sessionStorage.setItem('token', res.token);
-                sessionStorage.setItem('userid', res.userinfo.userid);
-                sessionStorage.setItem('username', res.userinfo.username);
-                checkToken(res.token);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        dispatch(loginAction.dologin({userid, password}));
     };
 
     return (
