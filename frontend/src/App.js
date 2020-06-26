@@ -21,7 +21,7 @@ export const App = () => {
         console.log(loginCheck);
     };
 
-    if (loginCheck || sessionStorage.getItem('token')) {
+    if (token || sessionStorage.getItem('token')) {
         if(!sessionStorage.getItem('token')) {
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('userid', userid);
