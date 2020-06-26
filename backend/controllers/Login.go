@@ -27,7 +27,7 @@ func DoLogin(c echo.Context) (err error) {
 	var loginUserinfo *models.IUserinfo
 
 	for _, userinfo := range userinfos {
-		if userinfo.Userid == linfo.Userid || userinfo.Password == linfo.Password {
+		if userinfo.Userid == linfo.Userid && userinfo.Password == linfo.Password {
 			loginUserinfo = &userinfo
 		}
 	}
