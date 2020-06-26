@@ -4,24 +4,27 @@ import { Card, Form, Button } from 'react-bootstrap';
 
 import { loginAction } from './slice';
 
-const Login = () => {
+const Login = ({ loginFinish }) => {
     const dispatch = useDispatch();
 
-    const [validated, setValidated] = useState(false);
+    const [ validated, setValidated ] = useState(false);
     const [ userid, setUserid ] = useState('');
     const [ password, setPassword ] = useState('');
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+
         const form = e.currentTarget;
 
         if (form.checkValidity() === false) {
-            e.preventDefault();
             e.stopPropagation();
         }
 
         setValidated(true);
 
-        dispatch(loginAction.dologin({userid, password}));
+        await dispatch(loginAction.dologin({userid, password}));
+
+        loginFinish(true);
     };
 
     return (
