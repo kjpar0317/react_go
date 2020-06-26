@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
 
 import { Container, Col, Row } from 'react-bootstrap';
@@ -9,15 +10,18 @@ import Header from './components/common/Header';
 import Login from './features/Login';
 import DashBoard from './features/DashBoard';
 import ImageGrid from './features/ImageGrid';
+import { loginSelector } from './features/Login/slice';
 
 export const App = () => {
-    const [token, setToken] = useState('');
+    const { userid, username, token } = useSelector(loginSelector.all);
 
-    const checkToken = (token) => {
-        setToken(token);
-    };
+    if (token || sessionStorage.getItem('token')) {
+        if(!sessionStorage.getItem('token')) {
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userid', userid);
+            sessionStorage.setItem('username', username);
+        }
 
-    if (token || (!token && sessionStorage.getItem('token'))) {
         return (
             <Container fluid>
                 <Row>
@@ -50,7 +54,7 @@ export const App = () => {
     } else {
         return (
             <div>
-                <Login checkToken={checkToken} />
+                <Login />
             </div>
         );
     }
