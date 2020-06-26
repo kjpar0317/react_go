@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import RGL, { WidthProvider } from 'react-grid-layout';
 
 import TestWidget from '../../components/widgets/TestWidget';
+
+import { doTest } from '../../api'
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -18,6 +20,12 @@ const Dashboard = () => {
         { i: '3', x: 0, y: 1, w: 1, h: 2, minH: 2, maxH: 2 },
         { i: '4', x: 1, y: 1, w: 1, h: 2, minH: 2, maxH: 2 },
     ]);
+
+    useEffect(() => {
+        doTest().then((res) => {
+            alert(res);
+        })
+    }, [])
 
     const onLayoutChange = (layouts) => {
         setLayouts(layouts);
