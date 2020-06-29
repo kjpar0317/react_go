@@ -6,4 +6,6 @@ type IUserinfo struct {
 	Username string `json:"username"`
 	Group    string `json:"group"`
 	Admin    bool   `json:"admin"`
+	Email    string `json:"email"`
+	HPhone    string `json:"hphone"`
 }
