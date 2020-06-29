@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { doLogin } from '../../api/login';
+import { doLogin } from '../../api';
 import { loginAction, loginSelector } from './slice';
 
 function* handleLogin() {
