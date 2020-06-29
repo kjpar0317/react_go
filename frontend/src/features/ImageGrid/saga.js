@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { getSplashImage } from '../../api/unsplash';
+import { getSplashImage } from '../../api';
 import { unsplashAction, unsplashSelector } from './slice';
 
 function* handleImageLoad() {
