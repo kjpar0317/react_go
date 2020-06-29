@@ -22,7 +22,7 @@ func DoLogin(c echo.Context) (err error) {
 		return echo.ErrUnauthorized
 	}
 
-	userinfos := services.New()
+	userinfos := services.InitUsers()
 
 	var loginUserinfo *models.IUserinfo
 
