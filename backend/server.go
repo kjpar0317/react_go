@@ -55,6 +55,9 @@ func main() {
 	r.Use(middleware.JWTWithConfig(config))
 
 	r.POST("/test", controllers.Restricted)
+	r.POST("/user/:userid", controllers.SelectUser)
+	r.POST("/user/register", controllers.CreateUser)
+	r.POST("/user/delete/:userid", controllers.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":7080"))
 }
