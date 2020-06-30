@@ -28,7 +28,7 @@ func InitBoardList() {
 		maxindex++
 	}
 
-	boardlist = append(boardlist, models.IBoard{maxindex, 0, 2, 3, "test", "테스트 제목", "테스트 내용", "SYSTEM", df, "SYSTEM", df})
+	boardlist = append(boardlist, models.IBoard{maxindex, maxindex, 0, 3, "test", "테스트 제목", "테스트 내용", "SYSTEM", df, "SYSTEM", df})
 	var grpno = maxindex
 	maxindex++
 	boardlist = append(boardlist, models.IBoard{maxindex, grpno, 1, 2, "test", "RE: 테스트 제목", "테스트 내용", "SYSTEM", df, "SYSTEM", df})
@@ -78,19 +78,26 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 		}
 
 		utils.NewSorter().
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno }).
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpno }).
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord}).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Depth}).
+			SortStable(filterlist)
+
+		utils.NewSorter().
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpno }).
 			ReverseSortStable(filterlist)
 
 		filterlist = filterlist[start:end]
 
 		return filterlist
 	} else {
+
 		utils.NewSorter().
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno }).
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpno }).
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord}).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Depth}).
+			SortStable(boardlist)
+
+		utils.NewSorter().
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpno }).
 			ReverseSortStable(boardlist)
 
 		filterlist = boardlist[start:end]

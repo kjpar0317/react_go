@@ -23,6 +23,7 @@ func DoLogin(c echo.Context) (err error) {
 	}
 
 	userinfos := services.InitUsers()
+	services.InitBoardList()
 
 	var loginUserinfo *models.IUserinfo
 
