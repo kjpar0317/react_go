@@ -81,7 +81,7 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno }).
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpno }).
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord}).
-			SortStable(filterlist)
+			ReverseSortStable(filterlist)
 
 		filterlist = filterlist[start:end]
 
@@ -91,7 +91,7 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno }).
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpno }).
 			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord}).
-			SortStable(filterlist)
+			ReverseSortStable(boardlist)
 
 		filterlist = boardlist[start:end]
 
