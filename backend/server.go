@@ -58,6 +58,10 @@ func main() {
 	r.POST("/user/:userid", controllers.SelectUser)
 	r.POST("/user/register", controllers.CreateUser)
 	r.POST("/user/delete/:userid", controllers.DeleteUser)
+	r.POST("/board/list", controllers.SelectBoardList)
+	r.POST("/board/add", controllers.AddBoard)
+	r.POST("/board/edit", controllers.EditBoard)
+	r.POST("/board/del/:bbsno", controllers.DeleteBoard)
 
 	e.Logger.Fatal(e.Start(":7080"))
 }
