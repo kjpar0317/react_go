@@ -28,7 +28,7 @@ func InitBoardList() {
 		maxindex++
 	}
 
-	boardlist = append(boardlist, models.IBoard{maxindex, maxindex, 0, 3, "test", "테스트 제목", "테스트 내용", "SYSTEM", df, "SYSTEM", df})
+	boardlist = append(boardlist, models.IBoard{maxindex, maxindex, 0, 1, "test", "테스트 제목", "테스트 내용", "SYSTEM", df, "SYSTEM", df})
 	var grpno = maxindex
 	maxindex++
 	boardlist = append(boardlist, models.IBoard{maxindex, grpno, 1, 2, "test", "RE: 테스트 제목", "테스트 내용", "SYSTEM", df, "SYSTEM", df})
