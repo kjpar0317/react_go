@@ -29,6 +29,23 @@ func (l *Sorter) SortStable(slice interface{}) {
 	})
 }
 
+func (l *Sorter) ReverseSortStable(slice interface{}) {
+	value := reflect.ValueOf(slice)
+	sort.SliceStable(slice, func(i, j int) bool {
+		si := value.Index(i).Interface()
+		sj := value.Index(j).Interface()
+		for _, key := range l.keys {
+			if key.Less(sj, si) {
+				return true
+			}
+			if key.Less(sj, si) {
+				return false
+			}
+		}
+		return false
+	})
+}
+
 type Key interface {
 	Less(a, b interface{}) bool
 }
