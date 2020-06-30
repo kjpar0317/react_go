@@ -1,17 +1,26 @@
 	
 package models
 
+// 게시판 구조
 type IBoard struct {
 	Bbsno       int    `json:"bbsno"`
 	Grpno       int    `json:"grpno"`
 	Grpord      int    `json:"grpord"`
 	Depth       int    `json:"depth"`
+	Writer		string `json:"writer"`
 	Title       string `json:"title"`
 	Content     string `json:"content"`
 	Createdby   string `json:"createdby"`
 	Createdtime string `json:"createdtime"`
 	Updatedby   string `json:"updatedby"`
 	Updatedtime string `json:"updatedtime"`
+}
+
+// 게시판 필터 구조
+type IBoardFilter struct {
+	SearchKey	string `json:"searchkey"`
+	SearchWord	string `json:"searchword"`
+	Page		int	   `json: "page"`
 }
 
 /*
