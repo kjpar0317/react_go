@@ -100,10 +100,10 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 }
 
 func AddBoard(boardinfo models.IBoard) bool {
+	df := time.Now().Format(time.RFC3339)
+
 	// userid가 있는 경우 false
 	if boardinfo.Bbsno == 0 {
-		df := time.Now().Format(time.RFC3339)
-
 		boardinfo.Bbsno = len(boardlist)
 		boardinfo.Grpno = len(boardlist)
 		boardinfo.Grpord = 0
@@ -127,6 +127,8 @@ func AddBoard(boardinfo models.IBoard) bool {
 		boardinfo.Grpno = boardinfo.Bbsno
 		boardinfo.Grpord = nGrpOrd
 		boardinfo.Depth = boardinfo.Depth + 1
+		boardinfo.Updatedby = boardinfo.Writer
+		boardinfo.Updatedtime = df
 
 		boardlist = append(boardlist, boardinfo)
 	}
