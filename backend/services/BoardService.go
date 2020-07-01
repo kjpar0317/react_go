@@ -12,7 +12,7 @@ import (
 var boardlist [] models.IBoard
 
 func InitBoardList() {
-	boardlist = make([]models.IBoard, 0, 10000)
+	boardlist = make([]models.IBoard, 0)
 	var maxindex = 0
 	df := time.Now().Format(time.RFC3339)
 
@@ -111,8 +111,12 @@ func AddBoard(boardinfo models.IBoard) bool {
 
 	// userid가 있는 경우 false
 	if boardinfo.Bbsno == 0 {
-		boardinfo.Bbsno = len(boardlist)
-		boardinfo.Grpno = len(boardlist)
+		utils.NewSorter().
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno}).
+			ReverseSortStable(boardlist)
+
+		boardinfo.Bbsno = boardlist[0].Bbsno + 1
+		boardinfo.Grpno = boardlist[0].Bbsno + 1
 		boardinfo.Grpord = 0
 		boardinfo.Depth = 0
 		boardinfo.Createdby = boardinfo.Writer
@@ -130,7 +134,7 @@ func AddBoard(boardinfo models.IBoard) bool {
 			}
 		}
 
-		boardinfo.Bbsno = len(boardlist)
+		boardinfo.Bbsno = cap(boardlist)
 		boardinfo.Grpno = boardinfo.Bbsno
 		boardinfo.Grpord = nGrpOrd
 		boardinfo.Depth = boardinfo.Depth + 1
