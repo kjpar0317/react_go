@@ -20,6 +20,7 @@ type IBoard struct {
 type IBoardFilter struct {
 	SearchKey	string `json:"searchkey"`
 	SearchWord	string `json:"searchword"`
+	NumPerPage	int	   `json: "numperpage"`
 	Page		int	   `json: "page"`
 }
 

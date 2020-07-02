@@ -27,6 +27,18 @@ func CreateUser(c echo.Context) (err error) {
 	})
 }
 
+func EditUser(c echo.Context) (err error) {
+	userinfo := new(models.IUserinfo)
+
+	if err = c.Bind(userinfo); err != nil {
+		return echo.ErrBadRequest
+	}
+
+	return c.JSON(http.StatusOK, echo.Map{
+		"isEdited": services.EditUser(*userinfo),
+	})
+}
+
 func DeleteUser(c echo.Context) (err error) {
 	userid := c.Param("userid")
 

@@ -41,14 +41,15 @@ func InitBoardList() {
 }
 
 func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
-	var offset = 15
-
 	if bfilter == (models.IBoardFilter{}) && bfilter.Page == 0 {
 		bfilter.Page = 1
 	}
+	if bfilter == (models.IBoardFilter{}) && bfilter.NumPerPage == 0 {
+		bfilter.NumPerPage = 15
+	}
 
-	var start = (bfilter.Page - 1) * offset
-	var end = start + offset
+	var start = (bfilter.Page - 1) * bfilter.NumPerPage
+	var end = start + bfilter.NumPerPage
 
 	filterlist := [] models.IBoard {}
 

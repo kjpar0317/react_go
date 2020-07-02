@@ -57,11 +57,13 @@ func main() {
 	r.POST("/test", controllers.Restricted)
 	r.POST("/user/:userid", controllers.SelectUser)
 	r.POST("/user/register", controllers.CreateUser)
+	r.POST("/user/edit", controllers.EditUser)
 	r.POST("/user/delete/:userid", controllers.DeleteUser)
 	r.POST("/board/list", controllers.SelectBoardList)
 	r.POST("/board/add", controllers.AddBoard)
 	r.POST("/board/edit", controllers.EditBoard)
 	r.POST("/board/del/:bbsno", controllers.DeleteBoard)
+	r.POST("/dashboard/layout/list", controllers.SelectLayouts)
 
 	e.Logger.Fatal(e.Start(":7080"))
 }

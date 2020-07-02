@@ -34,6 +34,15 @@ func CreateUser(userinfo models.IUserinfo) bool {
 	}
 }
 
+func EditUser(userinfo models.IUserinfo) bool {
+	for index, tmpuserinfo := range(userinfos) {
+		if tmpuserinfo.Userid == userinfo.Userid {
+			userinfos[index] = tmpuserinfo
+		}
+	}
+	return true
+}
+
 func DeleteUser(userid string) bool {
 	// userid가 있는 경우 false
 	if SelectUser(userid) == (models.IUserinfo{}) {

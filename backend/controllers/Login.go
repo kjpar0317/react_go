@@ -24,6 +24,7 @@ func DoLogin(c echo.Context) (err error) {
 
 	userinfos := services.InitUsers()
 	services.InitBoardList()
+	services.InitLayouts()
 
 	var loginUserinfo *models.IUserinfo
 
