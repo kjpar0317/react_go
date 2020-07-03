@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"../models"
-	"../services"
-	"github.com/labstack/echo"
+	"backend/models"
+	"backend/services"
 	"net/http"
+
+	"github.com/labstack/echo"
 )
 
 func SelectUser(c echo.Context) (err error) {

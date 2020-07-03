@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"../models"
+	"backend/models"
+	"net/http"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
-	"net/http"
 )
 
 /**
@@ -18,7 +19,7 @@ name := c.FormValue("name")
 params := make(map[string]string)
 _ := c.Bind(&params)
 name = params["name"]
- */
+*/
 /**
 new 와 make 의 차이
 new(T):포인터를 반환하여 타입*T의 값으로 T를 입력하고, 메모리를 할당합니다. new(T)는 T{}와 같습니다. (초기화 X, 즉 제로 값이 되는것이다)

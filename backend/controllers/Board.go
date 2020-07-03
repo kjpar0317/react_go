@@ -1,12 +1,13 @@
 package controllers
 
 import (
-	"github.com/labstack/echo"
 	"net/http"
 	"strconv"
 
-	"../models"
-	"../services"
+	"github.com/labstack/echo"
+
+	"backend/models"
+	"backend/services"
 )
 
 func SelectBoardList(c echo.Context) (err error) {

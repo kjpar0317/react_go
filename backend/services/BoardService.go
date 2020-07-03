@@ -1,15 +1,15 @@
 package services
 
 import (
-	"../models"
-	"../utils"
+	"backend/models"
+	"backend/utils"
 	"strings"
 	"time"
 
 	"github.com/drgrib/iter"
 )
 
-var boardlist [] models.IBoard
+var boardlist []models.IBoard
 
 func InitBoardList() {
 	boardlist = make([]models.IBoard, 0)
@@ -17,13 +17,13 @@ func InitBoardList() {
 	df := time.Now().Format(time.RFC3339)
 
 	/*
-	2, 2, 0, 1, 2번째 글 ...
-	4, 2, 1, 2, RE: 2번째 글 ...
-	5, 2, 2, 3, RE:RE:2번째 글 ...
-	3, 2, 3, 2, RE: 2번째 글 ...
-	1, 1, 0, 1, 1번째 글....
+		2, 2, 0, 1, 2번째 글 ...
+		4, 2, 1, 2, RE: 2번째 글 ...
+		5, 2, 2, 3, RE:RE:2번째 글 ...
+		3, 2, 3, 2, RE: 2번째 글 ...
+		1, 1, 0, 1, 1번째 글....
 	*/
-	for i := range iter.N(1000){
+	for i := range iter.N(1000) {
 		boardlist = append(boardlist, models.IBoard{i, i, 0, 1, "test", `"테스트" i`, `"테스트 내용" i`, "SYSTEM", df, "SYSTEM", df})
 		maxindex++
 	}
@@ -40,7 +40,7 @@ func InitBoardList() {
 	boardlist = append(boardlist, models.IBoard{maxindex, maxindex, 0, 1, "test", "초기화 테스트 마지막", "초기화 테스트 마지막 내용", "SYSTEM", df, "SYSTEM", df})
 }
 
-func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
+func SelectBoardList(bfilter models.IBoardFilter) []models.IBoard {
 	if bfilter == (models.IBoardFilter{}) && bfilter.Page == 0 {
 		bfilter.Page = 1
 	}
@@ -51,7 +51,7 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 	var start = (bfilter.Page - 1) * bfilter.NumPerPage
 	var end = start + bfilter.NumPerPage
 
-	filterlist := [] models.IBoard {}
+	filterlist := []models.IBoard{}
 
 	if bfilter.SearchKey != "" {
 		if bfilter.SearchKey == "name" {
@@ -79,8 +79,8 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 		}
 
 		utils.NewSorter().
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord}).
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Depth}).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord }).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Depth }).
 			SortStable(filterlist)
 
 		utils.NewSorter().
@@ -93,8 +93,8 @@ func SelectBoardList(bfilter models.IBoardFilter) [] models.IBoard {
 	} else {
 
 		utils.NewSorter().
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord}).
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Depth}).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Grpord }).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Depth }).
 			SortStable(boardlist)
 
 		utils.NewSorter().
@@ -113,7 +113,7 @@ func AddBoard(boardinfo models.IBoard) bool {
 	// userid가 있는 경우 false
 	if boardinfo.Bbsno == 0 {
 		utils.NewSorter().
-			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno}).
+			AddInt(func(i interface{}) int { return i.(models.IBoard).Bbsno }).
 			ReverseSortStable(boardlist)
 
 		boardinfo.Bbsno = boardlist[0].Bbsno + 1
@@ -129,7 +129,7 @@ func AddBoard(boardinfo models.IBoard) bool {
 	} else {
 		var nGrpOrd int = 0
 
-		for _, tmpboardinfo := range(boardlist) {
+		for _, tmpboardinfo := range boardlist {
 			if tmpboardinfo.Grpno == boardinfo.Grpno {
 				nGrpOrd++
 			}
@@ -149,7 +149,7 @@ func AddBoard(boardinfo models.IBoard) bool {
 }
 
 func EditBoard(boardinfo models.IBoard) bool {
-	for index, tmpboardinfo := range(boardlist) {
+	for index, tmpboardinfo := range boardlist {
 		if tmpboardinfo.Bbsno == boardinfo.Bbsno {
 			boardlist[index] = boardinfo
 		}
@@ -158,7 +158,7 @@ func EditBoard(boardinfo models.IBoard) bool {
 }
 
 func DeleteBoard(bbsno int) bool {
-	for index, tmpboardinfo := range(boardlist) {
+	for index, tmpboardinfo := range boardlist {
 		if tmpboardinfo.Bbsno == bbsno {
 			boardlist = append(boardlist[:index], boardlist[index+1:]...)
 		}

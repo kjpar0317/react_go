@@ -1,14 +1,14 @@
 package services
 
 import (
-	"../models"
+	"backend/models"
 )
 
-var userinfos [] models.IUserinfo
+var userinfos []models.IUserinfo
 
-func InitUsers() [] models.IUserinfo {
+func InitUsers() []models.IUserinfo {
 	// userinfos = [] models.IUserinfo {}
-	userinfos = make([] models.IUserinfo, 0, 100)
+	userinfos = make([]models.IUserinfo, 0, 100)
 	userinfos = append(userinfos, models.IUserinfo{Userid: "admin", Password: "1234", Username: "관리자", Group: "스터디", Admin: true, Email: "kjpar_kr@yahoo.co.kr", HPhone: "000-1111-2222"})
 	userinfos = append(userinfos, models.IUserinfo{Userid: "test", Password: "1234", Username: "테스터", Group: "스터디", Email: "a@a.com", HPhone: "010-2222-3333"})
 
@@ -21,7 +21,7 @@ func SelectUser(userid string) models.IUserinfo {
 			return userinfo
 		}
 	}
-	return models.IUserinfo {}
+	return models.IUserinfo{}
 }
 
 func CreateUser(userinfo models.IUserinfo) bool {
@@ -35,7 +35,7 @@ func CreateUser(userinfo models.IUserinfo) bool {
 }
 
 func EditUser(userinfo models.IUserinfo) bool {
-	for index, tmpuserinfo := range(userinfos) {
+	for index, tmpuserinfo := range userinfos {
 		if tmpuserinfo.Userid == userinfo.Userid {
 			userinfos[index] = tmpuserinfo
 		}

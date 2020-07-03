@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"../services"
-	"github.com/labstack/echo"
+	"backend/services"
 	"net/http"
+
+	"github.com/labstack/echo"
 )
 
 func SelectLayouts(c echo.Context) (err error) {

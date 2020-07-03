@@ -1,17 +1,18 @@
 package controllers
 
 import (
-	"../models"
-	"github.com/dgrijalva/jwt-go"
-	"github.com/labstack/echo"
+	"backend/models"
 	"net/http"
 	"time"
 
-	"../services"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/labstack/echo"
+
+	"backend/services"
 )
 
 type Login struct {
-	Userid  string `json:"userid" form:"userid" query:"userid"`
+	Userid   string `json:"userid" form:"userid" query:"userid"`
 	Password string `json:"password" form:"password" query:"password"`
 }
 
@@ -58,7 +59,7 @@ func DoLogin(c echo.Context) (err error) {
 	}
 
 	return c.JSON(http.StatusOK, echo.Map{
-		"token": t,
+		"token":    t,
 		"userinfo": loginUserinfo,
 	})
 }
