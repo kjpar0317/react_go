@@ -10,8 +10,6 @@ function* handleImageLoad() {
         const prevImages = yield select(unsplashSelector.images);
         const nextPage = page + 1;
 
-        console.log(page)
-
         const newImages = yield call(getSplashImage, nextPage);
 
         yield put(
