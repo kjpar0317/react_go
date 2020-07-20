@@ -1,12 +1,11 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { doLogin } from '../../api';
+import { doLogin } from 'api';
 import { loginAction, loginSelector } from './slice';
 
 function* handleLogin() {
     const { loginSuccess, loginFail } = loginAction;
 
     try {
-
         const logininfo = yield select(loginSelector.all);
 
         const res = yield call(doLogin, logininfo.userid, logininfo.password);
@@ -15,7 +14,7 @@ function* handleLogin() {
             loginSuccess({
                 token: res.token,
                 username: res.userinfo.username,
-                group: res.userinfo.group
+                group: res.userinfo.group,
             }),
         );
     } catch (err) {

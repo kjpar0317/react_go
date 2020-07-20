@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { getDashboardLayouts } from '../../api';
+import { getDashboardLayouts } from 'api';
 import { dashboardAction } from './slice';
 
 function* handleDashboardLayoutList() {

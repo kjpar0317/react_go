@@ -4,14 +4,14 @@ import { dashboardAction, dashboardSelector } from './slice';
 
 import RGL, { WidthProvider } from 'react-grid-layout';
 
-import TestWidget from '../../components/widgets/TestWidget';
+import TestWidget from 'components/widgets/TestWidget';
 
-import { doTest } from '../../api';
+import { doTest } from 'api';
 
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import './styles.css';
-import '../../components/widgets/TestWidget/styles.css';
+import 'components/widgets/TestWidget/styles.css';
 
 const ReactGridLayout = WidthProvider(RGL);
 

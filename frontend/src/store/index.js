@@ -4,13 +4,13 @@ import createSagaMiddleware from 'redux-saga';
 
 import { all } from 'redux-saga/effects';
 
-import { LOGIN, loginReducer } from '../features/Login/slice';
-import { DASHBOARD, dashboardReducer } from '../features/DashBoard/slice';
-import { UNSPLASH, unsplashReducer } from '../features/ImageGrid/slice';
+import { LOGIN, loginReducer } from 'features/Login/slice';
+import { DASHBOARD, dashboardReducer } from 'features/DashBoard/slice';
+import { UNSPLASH, unsplashReducer } from 'features/ImageGrid/slice';
 
-import { watchLogin } from '../features/Login/saga';
-import { watchDashboardLayoutList } from '../features/DashBoard/saga';
-import { watchUnsplash } from '../features/ImageGrid/saga';
+import { watchLogin } from 'features/Login/saga';
+import { watchDashboardLayoutList } from 'features/DashBoard/saga';
+import { watchUnsplash } from 'features/ImageGrid/saga';
 
 export const rootReducer = combineReducers({
     [LOGIN]: loginReducer,

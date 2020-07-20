@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { unsplashAction, unsplashSelector } from './slice';
-import { useInfinteScroll } from '../../hooks';
+import { useInfinteScroll } from 'hooks';
 
 import './styles.css';
-import Loader from '../../components/common/Loader';
-import ErrorView from '../../components/common/ErrorView';
+import Loader from 'components/common/Loader';
+import ErrorView from 'components/common/ErrorView';
 
 const ImageGrid = () => {
     const dispatch = useDispatch();
