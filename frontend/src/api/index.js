@@ -1,6 +1,6 @@
-import { doLogin } from './login';
-import { getDashboardLayouts } from './dashboard';
-import { getSplashImage } from './unsplash';
+export * from './login';
+export from './dashboard';
+export from './unsplash';
 
 const doTest = () => {
     return fetch(`${process.env.REACT_APP_BASE_URI}/api/test`, {
@@ -16,4 +16,4 @@ const doTest = () => {
         });
 };
 
-export { doTest, doLogin, getDashboardLayouts, getSplashImage };
+export { doTest };
