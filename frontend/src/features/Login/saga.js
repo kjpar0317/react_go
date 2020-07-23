@@ -8,7 +8,7 @@ function* handleLogin() {
     try {
         const logininfo = yield select(loginSelector.all);
 
-        const res = yield call(doLogin, logininfo.userid, logininfo.password);
+        const res = yield call(doLogin, logininfo.username, logininfo.password);
 
         yield put(
             loginSuccess({
