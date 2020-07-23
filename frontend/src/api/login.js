@@ -1,21 +1,13 @@
-const doLogin = (userid, password) => {
-    return fetch(
-        `${process.env.REACT_APP_BASE_URI}/login`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                'userid': userid,
-                'password': password
-            })
-        }
-    )
-        .then((res) => res.json())
-        .catch((err) => {
-            throw err;
-        });
+import axioUtils from 'utils/axios-utils';
+
+const doLogin = (username, password) => {
+    return axioUtils.post('/login', {
+        'userid': username,
+        'password': password
+    }).then(res => {
+        sessionStorage.setItem('userid', username);
+        return res.data;
+    });
 };
 
 export { doLogin };
