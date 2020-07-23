@@ -12,14 +12,13 @@ import DashBoard from './features/DashBoard';
 import ImageGrid from './features/ImageGrid';
 import { loginSelector } from './features/Login/slice';
 
+
 export const App = () => {
-    const { userid, username, token } = useSelector(loginSelector.all);
+    const token = useSelector(loginSelector.token);
 
     if (token || sessionStorage.getItem('token')) {
         if (!sessionStorage.getItem('token')) {
             sessionStorage.setItem('token', token);
-            sessionStorage.setItem('userid', userid);
-            sessionStorage.setItem('username', username);
         }
 
         return (
