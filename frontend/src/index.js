@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import App from './App';
 import createStore from './store';
 
+import registerServiceWorker from './registerServiceWorker';
+
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,3 +31,5 @@ ReactDOM.render(
     </Router>,
     document.getElementById('root'),
 );
+
+registerServiceWorker();
