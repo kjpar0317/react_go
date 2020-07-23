@@ -30,14 +30,14 @@ const slice = createSlice({
     },
 });
 
-const selectPassword= createSelector(
-    (state) => state.password,
-    (password) => password
-);
-
 const selectUsername= createSelector(
     (state) => state.username,
     (username) => username
+);
+
+const selectPassword= createSelector(
+    (state) => state.password,
+    (password) => password
 );
 
 const selectToken= createSelector(
