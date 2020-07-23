@@ -5,17 +5,16 @@ const slice = createSlice({
     initialState: {
         isLogining: false,
         token: '',
-        userid: '',
-        password: '',
         username: '',
+        password: '',
         group: '',
         error: null,
     },
     reducers : {
-        dologin: (state, {payload : { userid, password }}) => {
-            console.log('reducer : '+ userid)
+        dologin: (state, {payload : { username, password }}) => {
+            console.log('reducer : '+ username)
             state.isLogining = true;
-            state.userid = userid;
+            state.username = username;
             state.password = password;
         },
         loginSuccess: (state, { payload: { token, username, group } }) => {
@@ -30,11 +29,6 @@ const slice = createSlice({
         },
     },
 });
-
-const selectUserid = createSelector(
-    (state) => state.userid,
-    (userid) => userid
-);
 
 const selectPassword= createSelector(
     (state) => state.password,
@@ -52,12 +46,11 @@ const selectToken= createSelector(
 );
 
 const selectAllState = createSelector(
-    selectUserid,
-    selectPassword,
     selectUsername,
+    selectPassword,
     selectToken,
-    (userid, password, username, token) => {
-        return { userid, password, username, token };
+    (username, password, token) => {
+        return { username, password, token };
     },
 );
 
