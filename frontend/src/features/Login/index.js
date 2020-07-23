@@ -8,7 +8,7 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const [validated, setValidated] = useState(false);
-    const [userid, setUserid] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (e) => {
@@ -22,7 +22,7 @@ const Login = () => {
 
         setValidated(true);
 
-        await dispatch(loginAction.dologin({ userid, password }));
+        await dispatch(loginAction.dologin({ username, password }));
     };
 
     return (
@@ -34,13 +34,13 @@ const Login = () => {
                     validated={validated.toString()}
                     onSubmit={handleSubmit}
                 >
-                    <Form.Group controlId="userid" className="text-left">
+                    <Form.Group controlId="username" className="text-left">
                         <Form.Label>아이디</Form.Label>
                         <Form.Control
                             required
                             type="text"
-                            value={userid}
-                            onChange={(e) => setUserid(e.target.value)}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             placeholder="아이디를 입력하세요"
                         />
                     </Form.Group>
